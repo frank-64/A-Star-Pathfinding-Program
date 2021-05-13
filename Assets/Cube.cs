@@ -19,12 +19,13 @@ public class Cube : MonoBehaviour
 
     private void OnMouseDown()
     {
+        
         if (GlobalVariables.tiles == 0)
         {
             type = TileType.start;
             gameObject.GetComponent<Renderer>().material = startMaterial;
             GlobalVariables.tiles++;
-        }else if (GlobalVariables.tiles ==1)
+        }else if (GlobalVariables.tiles == 1)
         {
             type = TileType.target;
             gameObject.GetComponent<Renderer>().material = targetMaterial;

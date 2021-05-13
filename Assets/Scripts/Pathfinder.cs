@@ -15,13 +15,20 @@ public class Pathfinder : MonoBehaviour
     private GameObject[] tiles;
 
     public Tile[,] grid = new Tile[6,6];
+    
     // Start is called before the first frame update
-    public void Astar()
+    private void Start()
     {
-        
+        Debug.Log("To play click twice for the start and target points respectively.");
+        Debug.Log("Click further to add barriers between the two points.");
+        Debug.Log("Press space to start.");
+        Debug.Log("Press return to restart.");
         // collate all Cube objects into an array of GameObjects
         tiles = GameObject.FindGameObjectsWithTag("Cube");
-        
+    }
+
+    public void Astar()
+    {
         // instantiate the grid with Tile objects
         for (int i = 0; i < 6; i++)
         {
@@ -160,6 +167,20 @@ public class Pathfinder : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Astar();
+        }
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            resetGrid();
+            GlobalVariables.tiles = 0;
+        }
+    }
+
+    void resetGrid()
+    {
+        foreach (var tile in tiles)
+        {
+            tile.GetComponentInParent<Cube>().type = TileType.normal;
+            tile.GetComponent<Renderer>().material = defaultMaterial;
         }
     }
 
